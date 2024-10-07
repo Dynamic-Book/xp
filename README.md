@@ -1,2 +1,2 @@
 # xp
-Experimental packages to explore interesting concept of the Dybo
+Experimental packages to explore interesting concept for the Dybo
