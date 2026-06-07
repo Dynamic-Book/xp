@@ -1,6 +1,6 @@
-'From Cuis7.1 [latest update: #6544] on 1 August 2024 at 12:48:21 pm'!
+'From Cuis7.9 [latest update: #7979] on 7 June 2026 at 7:03:43 pm'!
 'Description '!
-!provides: 'Cassowary' 1 3!
+!provides: 'Cassowary' 1 4!
 SystemOrganization addCategory: #'Cassowary-Kernel'!
 SystemOrganization addCategory: #'Cassowary-Tests'!
 SystemOrganization addCategory: #'Cassowary-Demo'!
@@ -187,7 +187,7 @@ ClError class
 	instanceVariableNames: ''!
 
 !classDefinition: #ClDemoWindow category: #'Cassowary-Demo'!
-BoxedMorph subclass: #ClDemoWindow
+BorderedBoxMorph subclass: #ClDemoWindow
 	instanceVariableNames: 'shell main form da gc gcw buffer grabPoint dragPoint cs errorPixel editX editY'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -345,42 +345,42 @@ self new openInWorld!
 !ClElasticQuadDemo commentStamp: '<historical>' prior: 0!
 self new openInWorld!
 
-!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:12'!
+!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:12:00'!
 isDummy
 	"Answer true if this is a dummy variable (used as a marker variable for required equality constraints).  Such variables aren't allowed to enter the basis when pivoting."
 
 	^ false! !
 
-!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:12'!
+!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:12:00'!
 isExternal
 	"Answer true if this is a variable known outside the solver. (We need to give such variables a value after solving is complete.)"
 
 	self subclassResponsibility! !
 
-!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:12'!
+!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:12:00'!
 isPivotable
 	"Answer true if we can pivot on this variable"
 
 	self subclassResponsibility ! !
 
-!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:12'!
+!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:12:00'!
 isRestricted
 	"Answer true if this is a restricted (or slack) variable.  Such variables are constrained to be non-negative, and occur only internally to the simplex solver."
 
 	self subclassResponsibility ! !
 
-!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:13'!
+!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:13:00'!
 name
 	"Answers <String> | nil"
 
 	^ name! !
 
-!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:13'!
+!ClAbstractVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:13:00'!
 name: aString
 
 	name := aString! !
 
-!ClAbstractVariable methodsFor: 'printing' stamp: 'jcg 5/4/2001 13:19'!
+!ClAbstractVariable methodsFor: 'printing' stamp: 'jcg 4/May/2001 13:19:00'!
 printOn: aStream
 	"Prints a semi-descriptive representation to the stream, using the name if there is one, and otherwise the hash number of this object.
 
@@ -393,104 +393,104 @@ printOn: aStream
 		ifNil: [aStream nextPutAll: 'CV#', self hash printString]
 		ifNotNil: [aStream nextPutAll: self name].! !
 
-!ClAbstractVariable methodsFor: 'testing' stamp: 'hlsf 7/30/2024 10:00:06'!
+!ClAbstractVariable methodsFor: 'testing' stamp: 'hlsf 30/Jul/2024 10:00:06'!
 negative
 	^ false! !
 
-!ClAbstractVariable methodsFor: 'testing' stamp: 'hlsf 7/30/2024 10:00:17'!
+!ClAbstractVariable methodsFor: 'testing' stamp: 'hlsf 30/Jul/2024 10:00:17'!
 postive
 	^ true! !
 
-!ClAbstractVariable class methodsFor: 'instance creation' stamp: 'jcg 5/4/2001 13:08'!
+!ClAbstractVariable class methodsFor: 'instance creation' stamp: 'jcg 4/May/2001 13:08:00'!
 newNamed: aString
 
 	^ self new
 			name: aString;
 			yourself! !
 
-!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:26'!
+!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:26:00'!
 isDummy
 
 	^ true! !
 
-!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:26'!
+!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:26:00'!
 isExternal
 
 	^ false! !
 
-!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:27'!
+!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:27:00'!
 isPivotable
 
 	^ false! !
 
-!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:27'!
+!ClDummyVariable methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:27:00'!
 isRestricted
 
 	^ true! !
 
-!ClObjectiveVariable methodsFor: 'accessing' stamp: 'jcg 5/6/2001 15:11'!
+!ClObjectiveVariable methodsFor: 'accessing' stamp: 'jcg 6/May/2001 15:11:00'!
 isExternal
 	"Return true if this is a variable known outside the solver. (We need to give such variables a value after solving is complete.)"
 
 	^ false! !
 
-!ClObjectiveVariable methodsFor: 'accessing' stamp: 'jcg 5/6/2001 15:11'!
+!ClObjectiveVariable methodsFor: 'accessing' stamp: 'jcg 6/May/2001 15:11:00'!
 isPivotable
 	"Answer true if we can pivot on this variable"
 
 	^ false! !
 
-!ClObjectiveVariable methodsFor: 'accessing' stamp: 'jcg 5/6/2001 15:12'!
+!ClObjectiveVariable methodsFor: 'accessing' stamp: 'jcg 6/May/2001 15:12:00'!
 isRestricted
 	"Answer true if this is a restricted (or slack) variable.  Such variables are constrained to be non-negative and occur only internally to the simplex solver."
 
 	^ false! !
 
-!ClSlackVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 16:53'!
+!ClSlackVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 16:53:00'!
 isExternal
 	"Answer true if this a variable known outside the solver.  (We need to give such variables a value after solving is complete.)"
 
 	^ false! !
 
-!ClSlackVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 16:54'!
+!ClSlackVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 16:54:00'!
 isPivotable
 	"Answer true if we can pivot on this variable."
 
 	^ true! !
 
-!ClSlackVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 16:54'!
+!ClSlackVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 16:54:00'!
 isRestricted
 	"Answer true if this is a restricted (or slack) variable.  Such variables are constrained to be non-negative and occur only internally to the simplex solver."
 
 	^ true! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:54'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:54:00'!
 * expr
 
 	^ self asLinearExpression * expr! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:54'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:54:00'!
 + expr
 
 	^ self asLinearExpression + expr! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:55'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:55:00'!
 - expr
 
 	^ self asLinearExpression - expr! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:55'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:55:00'!
 / expr
 
 	^ self asLinearExpression / expr! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:57'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:57:00'!
 @ anObject
 	"A convenience method for creating point pairs of constrainable variables.  Mostly used in graphic constraints where the x and y dimensions are constrained separately."
 
 	^ Point x: self y: anObject! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:58'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:58:00'!
 asLinearExpression
 	"Coerce this variable to be a linear expression.
 
@@ -501,7 +501,7 @@ asLinearExpression
 	expr terms at: self put: 1.0.
 	^ expr! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:59'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:59:00'!
 cnEqual: expr
 	"Answer a linear constraint self=expr with strength=required and weight=1.
 
@@ -511,7 +511,7 @@ cnEqual: expr
 	^ self cnEqual: expr strength: ClStrength required weight: 1.0
 ! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:00'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:00:00'!
 cnEqual: expr strength: s
 	"Answer a linear constraint self=expr of strength s and weight=1.
 
@@ -521,7 +521,7 @@ cnEqual: expr strength: s
 
 	^ self cnEqual: expr strength: s weight: 1.0! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:01'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:01:00'!
 cnEqual: expr strength: s weight: w
 	"Answer a linear constraint self=expr of strength s and weight w.
 
@@ -538,7 +538,7 @@ cnEqual: expr strength: s weight: w
 		weight: w.
 	^ cn! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:02'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:02:00'!
 cnGEQ: expr
 	"Answer a linear constraint self>=expr with strength=required and weight=1.
 
@@ -547,7 +547,7 @@ cnGEQ: expr
 
 	^ self cnGEQ: expr strength: ClStrength required weight: 1.0! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:03'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:03:00'!
 cnGEQ: expr strength: s
 	"Answer a linear constraint self>=expr of strength s and weight=1.
 
@@ -557,7 +557,7 @@ cnGEQ: expr strength: s
 
 	^ self cnGEQ: expr strength: s weight: 1.0! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:05'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:05:00'!
 cnGEQ: expr strength: s weight: w
 	"Answer a linear constraint self>=expr of strength s and weight w.
 
@@ -574,7 +574,7 @@ cnGEQ: expr strength: s weight: w
 		weight: w.
 	^ cn! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:05'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:05:00'!
 cnLEQ: expr
 	"Answer a linear constraint self<=expr with strength=required and weight=1.
 
@@ -583,7 +583,7 @@ cnLEQ: expr
 
 	^ self cnLEQ: expr strength: ClStrength required weight: 1.0! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:06'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:06:00'!
 cnLEQ: expr strength: s
 	"Answer a linear constraint self<=expr of strength s and weight 1.
 
@@ -593,7 +593,7 @@ cnLEQ: expr strength: s
 
 	^ self cnLEQ: expr strength: s weight: 1.0! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 20:20'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 20:20:00'!
 cnLEQ: expr strength: s weight: w
 	"Answer a linear constraint self<=expr of strength s and weight w.
 
@@ -610,18 +610,18 @@ cnLEQ: expr strength: s weight: w
 		weight: w.
 	^ cn! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/8/2001 08:10'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 8/May/2001 08:10:00'!
 divFrom: aNumber
 	"We should return a new linear expression (aNumber/self) -- but since the result must be linear, this is always an error."
 
 	ClError nonlinear signal! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:13'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:13:00'!
 negated
 
 	^ -1.0 * self! !
 
-!ClVariable methodsFor: 'operations' stamp: 'jcg 5/7/2001 18:12'!
+!ClVariable methodsFor: 'operations' stamp: 'jcg 7/May/2001 18:12:00'!
 subtractFrom: aNumber
 	"Answer a new linear expression (aNumber-self).
 
@@ -629,51 +629,51 @@ subtractFrom: aNumber
 
 	^ self negated + aNumber! !
 
-!ClVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 18:09'!
+!ClVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 18:09:00'!
 isExternal
 	"Answer true if this a variable known outside the solver.  (We need to give such variables a value after solving is complete.)"
 
 	^ true! !
 
-!ClVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 18:09'!
+!ClVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 18:09:00'!
 isPivotable
 	"Answer true if we can pivot on this variable."
 
 	^ false! !
 
-!ClVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 18:09'!
+!ClVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 18:09:00'!
 isRestricted
 	"Answer true if this is a restricted (or slack) variable.  Such variables are constrained to be non-negative and occur only internally to the simplex solver."
 
 	^ false! !
 
-!ClVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 18:13'!
+!ClVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 18:13:00'!
 value
 	"Answer the current value I hold."
 
 	^ value "a Number"! !
 
-!ClVariable methodsFor: 'accessing' stamp: 'jcg 5/7/2001 18:14'!
+!ClVariable methodsFor: 'accessing' stamp: 'jcg 7/May/2001 18:14:00'!
 value: aNumber
 	"Set my value."
 
 	value := aNumber! !
 
-!ClVariable methodsFor: 'printing' stamp: 'jcg 5/7/2001 18:11'!
+!ClVariable methodsFor: 'printing' stamp: 'jcg 7/May/2001 18:11:00'!
 printOn: aStream
 
 	super printOn: aStream.
 	aStream nextPutAll: '['.  self value printOn: aStream.  aStream nextPutAll: ']'! !
 
-!ClVariable methodsFor: 'testing' stamp: 'hlsf 7/30/2024 10:00:35'!
+!ClVariable methodsFor: 'testing' stamp: 'hlsf 30/Jul/2024 10:00:35'!
 negative
 	^ value < 0! !
 
-!ClVariable methodsFor: 'testing' stamp: 'hlsf 7/30/2024 10:00:44'!
+!ClVariable methodsFor: 'testing' stamp: 'hlsf 30/Jul/2024 10:00:44'!
 positive
 	^ value >= 0! !
 
-!ClVariable class methodsFor: 'instance creation' stamp: 'jcg 5/7/2001 17:53'!
+!ClVariable class methodsFor: 'instance creation' stamp: 'jcg 7/May/2001 17:53:00'!
 newWith: anObject
 	"Create a new variable with anObject as its initial value."
 
@@ -681,7 +681,7 @@ newWith: anObject
 		value: anObject;
 		yourself! !
 
-!ClVariable class methodsFor: 'instance creation' stamp: 'jcg 5/7/2001 17:54'!
+!ClVariable class methodsFor: 'instance creation' stamp: 'jcg 7/May/2001 17:54:00'!
 newWith: anObject name: nameString
 	"Create a new variable with anObject as its initial value and name nameString."
 
@@ -690,57 +690,57 @@ newWith: anObject name: nameString
 		name: nameString;
 		yourself! !
 
-!ClConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:21'!
+!ClConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:21:00'!
 expression
 	"Answer my linear expression.  (For linear equations, this constraint represents expression=0; for linear inequalities it represents expression>=0.)"
 
 	self subclassResponsibility! !
 
-!ClConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:21'!
+!ClConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:21:00'!
 isEditConstraint
 
 	^ false! !
 
-!ClConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:22'!
+!ClConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:22:00'!
 isInequality
 	"Answer true if this is an inequality constraint and false if it is an equality constraint.  Default is equality."
 
 	^ false! !
 
-!ClConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:22'!
+!ClConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:22:00'!
 isRequired
 	"Answer true if my strength is 'required'."
 
 	^ self strength isRequired! !
 
-!ClConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:23'!
+!ClConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:23:00'!
 isStayConstraint
 
 	^ false! !
 
-!ClConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:23'!
+!ClConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:23:00'!
 strength
 	"Answers <ClStrength>"
 
 	^ strength! !
 
-!ClConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:24'!
+!ClConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:24:00'!
 weight
 	"Answers <Float>"
 
 	^ weight! !
 
-!ClConstraint methodsFor: 'private' stamp: 'jcg 5/4/2001 13:25'!
+!ClConstraint methodsFor: 'private' stamp: 'jcg 4/May/2001 13:25:00'!
 strength: aClStrength
 	
 	strength := aClStrength! !
 
-!ClConstraint methodsFor: 'private' stamp: 'jcg 5/4/2001 13:25'!
+!ClConstraint methodsFor: 'private' stamp: 'jcg 4/May/2001 13:25:00'!
 weight: aFloat
 	
 	weight := aFloat! !
 
-!ClEditOrStayConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:35'!
+!ClEditOrStayConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:35:00'!
 expression
 	| e |
 
@@ -749,22 +749,22 @@ expression
 	e terms at: self variable put: -1.0.
 	^ e! !
 
-!ClEditOrStayConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:35'!
+!ClEditOrStayConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:35:00'!
 variable
 
 	^ variable! !
 
-!ClEditOrStayConstraint methodsFor: 'private' stamp: 'jcg 5/4/2001 13:36'!
+!ClEditOrStayConstraint methodsFor: 'private' stamp: 'jcg 4/May/2001 13:36:00'!
 variable: aVariable
 
 	variable := aVariable! !
 
-!ClEditOrStayConstraint class methodsFor: 'instance creation' stamp: 'jcg 5/4/2001 13:32'!
+!ClEditOrStayConstraint class methodsFor: 'instance creation' stamp: 'jcg 4/May/2001 13:32:00'!
 variable: aVariable strength: aStrength
 
 	^ self variable: aVariable strength: aStrength weight: 1.0! !
 
-!ClEditOrStayConstraint class methodsFor: 'instance creation' stamp: 'jcg 5/4/2001 13:33'!
+!ClEditOrStayConstraint class methodsFor: 'instance creation' stamp: 'jcg 4/May/2001 13:33:00'!
 variable: aVariable strength: aStrength weight: aFloat
 
 	^ self new
@@ -773,35 +773,35 @@ variable: aVariable strength: aStrength weight: aFloat
 		weight: aFloat;
 		yourself! !
 
-!ClEditConstraint methodsFor: 'accessing' stamp: 'jcg 5/4/2001 13:30'!
+!ClEditConstraint methodsFor: 'accessing' stamp: 'jcg 4/May/2001 13:30:00'!
 isEditConstraint
 
 	^ true! !
 
-!ClEditConstraint class methodsFor: 'instance creation' stamp: 'jcg 5/4/2001 13:29'!
+!ClEditConstraint class methodsFor: 'instance creation' stamp: 'jcg 4/May/2001 13:29:00'!
 variable: aVariable value: aValue strength: aStrength
 
 	^ (self variable: aVariable strength: aStrength)
 		value: aValue;
 		yourself! !
 
-!ClStayConstraint methodsFor: 'accessing' stamp: 'jcg 5/7/2001 16:55'!
+!ClStayConstraint methodsFor: 'accessing' stamp: 'jcg 7/May/2001 16:55:00'!
 isStayConstraint
 
 	^ true! !
 
-!ClLinearConstraint methodsFor: 'accessing' stamp: 'jcg 5/6/2001 12:20'!
+!ClLinearConstraint methodsFor: 'accessing' stamp: 'jcg 6/May/2001 12:20:00'!
 expression
 	"Answer my linear expression. (For linear equations, this constraint represents expression=0; for linear inequalities it represents expression>=0."
 
 	^ expression  "a CLLinearExpression"! !
 
-!ClLinearConstraint methodsFor: 'private' stamp: 'jcg 5/6/2001 12:20'!
+!ClLinearConstraint methodsFor: 'private' stamp: 'jcg 6/May/2001 12:20:00'!
 expression: aCLLinearExpression
 
 	expression := aCLLinearExpression! !
 
-!ClLinearEquation methodsFor: 'printing' stamp: 'jcg 5/6/2001 12:25'!
+!ClLinearEquation methodsFor: 'printing' stamp: 'jcg 6/May/2001 12:25:00'!
 printOn: aStream.
 
 	self strength printOn: aStream.
@@ -809,13 +809,13 @@ printOn: aStream.
 	expression printOn: aStream.
 	aStream nextPutAll: '=0)'! !
 
-!ClLinearInequality methodsFor: 'accessing' stamp: 'jcg 5/6/2001 15:08'!
+!ClLinearInequality methodsFor: 'accessing' stamp: 'jcg 6/May/2001 15:08:00'!
 isInequality
 	"Answer true if this is an inequality constraint and false otherwise."
 	
 	^ true! !
 
-!ClLinearInequality methodsFor: 'printing' stamp: 'jcg 5/6/2001 15:10'!
+!ClLinearInequality methodsFor: 'printing' stamp: 'jcg 6/May/2001 15:10:00'!
 printOn: aStream
 
 	self strength printOn: aStream.
@@ -823,7 +823,7 @@ printOn: aStream
 	expression printOn: aStream.
 	aStream nextPutAll: '>=0)'! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/8/2001 08:09'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 8/May/2001 08:09:00'!
 * x
 	"Answer a new CLLinearExpression formed by multiplying self by x.  (Note that this result must be linear.)"
 	| expr n result |
@@ -843,7 +843,7 @@ printOn: aStream
 	self terms keysAndValuesDo: [:v :c | result terms at: v put: n*c].
 	^ result! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 12:39'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 12:39:00'!
 + x
 	"Answer a new CLLinearExpression formed by adding x to self."
 	| expr result |
@@ -855,7 +855,7 @@ printOn: aStream
 	expr variablesAndCoefficientsDo: [:v :c | result addVariable: v coefficient: c].
 	^ result! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 12:41'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 12:41:00'!
 - x
 	"Answer a new CLLinearExpression formed by subtracting x from self."
 	| expr result |
@@ -867,7 +867,7 @@ printOn: aStream
 	expr variablesAndCoefficientsDo: [:v :c | result addVariable: v coefficient: c negated].
 	^ result! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/8/2001 08:10'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 8/May/2001 08:10:00'!
 / x
 	"Answer a new linear expression formed by dividing self by x. (Note that this result must be linear.)"
 
@@ -876,7 +876,7 @@ printOn: aStream
 	expr isConstant ifFalse: [ClError nonlinear signal "result would be non-linear"].
 	^ self * expr constant reciprocal! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/7/2001 20:26'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 7/May/2001 20:26:00'!
 addExpression: expr times: n
 	"Add n * expr to this expression.
 
@@ -887,7 +887,7 @@ addExpression: expr times: n
 	expr terms keysAndValuesDo: [:v :c |
 		self addVariable: v coefficient: n*c]! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/9/2001 07:55'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 9/May/2001 07:55:00'!
 addExpression: expr times: n subject: subject solver: solver
 	"Add n * expr to this expression.  Notify the solver if a variable is added or deleted from this expression.
 
@@ -900,7 +900,7 @@ addExpression: expr times: n subject: subject solver: solver
 	expr terms keysAndValuesDo: [:v :c |
 		self addVariable: v coefficient: n*c subject: subject solver: solver]! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 12:55'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 12:55:00'!
 addVariable: v coefficient: c
 	"Add a term c*v to this expression.  If the expression already contains a term involving v, add c to the existing coefficient.  If the new coefficient is approximately 0, delete v.
 
@@ -918,7 +918,7 @@ addVariable: v coefficient: c
 				ifFalse: [ self terms at: v put: newCoeff]]
 		ifFalse: [self terms at: v put: c]! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 12:59'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 12:59:00'!
 addVariable: v coefficient: c subject: subject solver: solver
 	"Add a term c*v to this expression.  If the expression already contains a term involving v, add c to the existing coefficient.  If the new coefficient is approximately 0, delete v.  Notify the solver if v appears or disappears from this expression.
 
@@ -941,7 +941,7 @@ addVariable: v coefficient: c subject: subject solver: solver
 			self terms at: v put: c.
 			solver noteAddedVariable: v subject: subject]! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 13:08'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 13:08:00'!
 changeSubject: oldSubject newSubject: newSubject
 	"This linear expression currently represents the equation oldSubject=self.  Destructively modify it so that it represents the equation newSubject=self.
 
@@ -963,19 +963,19 @@ changeSubject: oldSubject newSubject: newSubject
 	self terms keysAndValuesDo: [:v :c | self terms at: v put: c * nreciprocal].
 	self terms at: oldSubject put: reciprocal! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 14:35'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 14:35:00'!
 constant: aNumber
 	"see ClLinearExpression constant"
 
 	constant := aNumber! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 14:38'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 14:38:00'!
 incrementConstant: aNumber
 	"Increment the constant part of this expression by aNumber."
 
 	self constant: self constant + aNumber! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 5/6/2001 14:43'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'jcg 6/May/2001 14:43:00'!
 newSubject: subject
 	"This linear expression currently represents the equation self=0.  Destructively modify it so that subject=self represents an equivalent equation.  Precondition: subject must be one of the variables in this expression.
 
@@ -992,7 +992,7 @@ newSubject: subject
 	self constant: nreciprocal * self constant.
 	self terms keysAndValuesDo: [:v :c | self terms at: v put: c*nreciprocal]	! !
 
-!ClLinearExpression methodsFor: 'manipulation' stamp: 'eem 4/3/2012 09:17'!
+!ClLinearExpression methodsFor: 'manipulation' stamp: 'eem 3/Apr/2012 09:17:00'!
 substituteOut: var expr: expr subject: subject solver: solver
 	"Replace var with a symbolic expression expr that is equal to it.  If a variable has been added to this expression that wasn't therer before, or if a variable has been dropped from this expression because it now has a coefficient of 0, inform the solver.
 
@@ -1020,19 +1020,19 @@ substituteOut: var expr: expr subject: subject solver: solver
 						solver noteRemovedVariable: v subject: subject]
 					ifFalse: [self terms at: v put: newCoeff]]]! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/8/2001 08:00'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 8/May/2001 08:00:00'!
 anyVariable
 	"Answer any ClAbstractVariable from this expression. (It is an error if this expression is constant)"
 
 	self terms keysDo: [:v | ^ v].
 	ClError internalError signal  "expression is constant"! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 13:01'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 13:01:00'!
 asLinearExpression
 
 	^ self! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:18'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:18:00'!
 cnEqual: expr
 	"Answer a ClLinearEquation self=expr with strength=required and weight=1.
 
@@ -1040,7 +1040,7 @@ cnEqual: expr
 
 	^ self cnEqual: expr strength: ClStrength required weight: 1.0! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:19'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:19:00'!
 cnEqual: expr strength: s
 	"Answer a ClLinearEquation self=expr with strength s and weight=1.
 
@@ -1049,7 +1049,7 @@ cnEqual: expr strength: s
 
 	^ self cnEqual: expr strength: s weight: 1.0! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:21'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:21:00'!
 cnEqual: expr strength: s weight: w
 	"Answer a ClLinearEquation self=expr with strength s and weight w.
 
@@ -1063,7 +1063,7 @@ cnEqual: expr strength: s weight: w
 	^ cn
 ! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:22'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:22:00'!
 cnGEQ: expr
 	"Answer a ClLinearInequality self>=expr with strength=required and weight=1.
 
@@ -1071,7 +1071,7 @@ cnGEQ: expr
 
 	^ self cnGEQ: expr strength: ClStrength required weight: 1.0! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:23'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:23:00'!
 cnGEQ: expr strength: s
 	"Answer a ClLinearInequality self>=expr with strength s and weight=1.
 
@@ -1080,7 +1080,7 @@ cnGEQ: expr strength: s
 
 	^ self cnGEQ: expr strength: s weight: 1.0! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:26'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:26:00'!
 cnGEQ: expr strength: s weight: w
 	"Answer a ClLinearInequality self>=expr with strength s and weight w.
 
@@ -1094,7 +1094,7 @@ cnGEQ: expr strength: s weight: w
 	^ cn
 ! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:27'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:27:00'!
 cnLEQ: expr
 	"Answer a ClLinearInequality self<=expr with strength=required and weight=1.
 
@@ -1102,7 +1102,7 @@ cnLEQ: expr
 
 	^ self cnLEQ: expr strength: ClStrength required weight: 1.0! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:27'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:27:00'!
 cnLEQ: expr strength: s
 	"Answer a ClLinearInequality self<=expr with strength s and weight=1.
 
@@ -1111,7 +1111,7 @@ cnLEQ: expr strength: s
 
 	^ self cnLEQ: expr strength: s weight: 1.0! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 7/5/2001 16:41'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/Jul/2001 16:41:00'!
 cnLEQ: expr strength: s weight: w
 	"Answer a ClLinearInequality self<=expr with strength s and weight w.
 
@@ -1125,40 +1125,40 @@ cnLEQ: expr strength: s weight: w
 	^ cn
 ! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:31'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:31:00'!
 coefficientFor: aClVariable
 	"Answer the coefficient corresponding to aClVariable (i.e. the 'ci' corresponding to the 'vi' that aClVariable is:
 		v1@c1 + v2*c2 + ... + vn*cn + c"
 
 	^ self terms at: aClVariable ifAbsent: [0.0]! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:32'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:32:00'!
 constant
 	"Answer the constant part of this expression (i.e. the 'c' in: c + a1*v1 + a2*v2 + ... + an*vn)"
 
 	^ constant! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/8/2001 08:10'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 8/May/2001 08:10:00'!
 divFrom: aNumber
 	"Answer a new ClLinearExpression (aNumber/self).  Since the result must be linear, this is permissible only if self is a constant."
 
 	self isConstant ifTrue: [^ aNumber / self constant].
 	ClError nonlinear signal "result would be non-linear"! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:38'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:38:00'!
 isConstant
 	"Answer true if this expression is a constant (i.e. it contains no varables)."
 
 	^ self terms isEmpty! !
 
-!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 5/6/2001 14:57'!
+!ClLinearExpression methodsFor: 'accessing' stamp: 'jcg 6/May/2001 14:57:00'!
 subtractFrom: aNumber
 	"Answer a new ClLinearExpression (aNumber/self)."
 
 	^ self negated + aNumber
 ! !
 
-!ClLinearExpression methodsFor: 'private' stamp: 'jcg 5/6/2001 15:03'!
+!ClLinearExpression methodsFor: 'private' stamp: 'jcg 6/May/2001 15:03:00'!
 initialize
 	"Initialize this linear expression to 0"
 
@@ -1169,7 +1169,7 @@ initialize
 	^ self
 ! !
 
-!ClLinearExpression methodsFor: 'private' stamp: 'jcg 5/6/2001 15:05'!
+!ClLinearExpression methodsFor: 'private' stamp: 'jcg 6/May/2001 15:05:00'!
 terms
 	"Answer the terms dictionary.  The keys in the dictionary will be variables and the values will be numbers ( the corresponding coefficients).. If 'terms' contains variables v1, ..., vn and coefficients a1, ..., an, then this object represents the linear expression:
 	constant + a1*v1 + ... + an*vn
@@ -1177,7 +1177,7 @@ Note that the coefficients should all be nonzero -- if there were going to be a 
 
 	^ terms! !
 
-!ClLinearExpression methodsFor: 'private' stamp: 'jcg 5/6/2001 15:07'!
+!ClLinearExpression methodsFor: 'private' stamp: 'jcg 6/May/2001 15:07:00'!
 terms: aDictionary
 	"See ClLinearExpression terms.  
 
@@ -1185,7 +1185,7 @@ terms: aDictionary
 
 	terms := aDictionary! !
 
-!ClLinearExpression methodsFor: 'printing' stamp: 'jcg 5/6/2001 14:48'!
+!ClLinearExpression methodsFor: 'printing' stamp: 'jcg 6/May/2001 14:48:00'!
 printOn: aStream	
 	| sortedKeys |
 
@@ -1198,7 +1198,7 @@ printOn: aStream
 		aStream nextPut: $*.
 		v printOn: aStream].! !
 
-!ClLinearExpression methodsFor: 'enumerating' stamp: 'jcg 5/6/2001 14:59'!
+!ClLinearExpression methodsFor: 'enumerating' stamp: 'jcg 6/May/2001 14:59:00'!
 variablesAndCoefficientsDo: aBlock
 	"Evaluate aBlock with each variable-coefficient pair asArguments.
 
@@ -1206,12 +1206,12 @@ variablesAndCoefficientsDo: aBlock
 
 	self terms keysAndValuesDo: [:v :c | aBlock value: v value: c]! !
 
-!ClLinearExpression class methodsFor: 'instance creation' stamp: 'jcg 5/6/2001 12:26'!
+!ClLinearExpression class methodsFor: 'instance creation' stamp: 'jcg 6/May/2001 12:26:00'!
 new
 
 	^ super new initialize; yourself! !
 
-!ClLinearExpression class methodsFor: 'instance creation' stamp: 'jcg 5/6/2001 12:27'!
+!ClLinearExpression class methodsFor: 'instance creation' stamp: 'jcg 6/May/2001 12:27:00'!
 newWithSymbolicWeight
 	| newGuy |
 
@@ -1219,7 +1219,7 @@ newWithSymbolicWeight
 	newGuy constant: ClSymbolicWeight zero.
 	^ newGuy! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 15:15'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 15:15:00'!
 addBounds: var lowerBound: lower upperBound: upper
 	"Add constraints so that lower<=var<=upper (nil means no bound)
 
@@ -1230,7 +1230,7 @@ addBounds: var lowerBound: lower upperBound: upper
 	lower ifNotNil: [self addConstraint: (lower cnLEQ: var)].
 	upper ifNotNil: [self addConstraint: (var cnLEQ: upper)]! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 5/23/2001 14:26'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 23/May/2001 14:26:00'!
 addConstraint: aClLinearConstraint
 	"Add aClLinearConstraint to the tableau"
 	| expr |
@@ -1245,13 +1245,13 @@ addConstraint: aClLinearConstraint
 		self setExternalVariables]
 ! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 15:22'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 15:22:00'!
 addEditVar: aClVariable strength: aClStrength
 	"Add aClVariable to the collection of variables being edited."
 
 	self addConstraint: (ClEditConstraint variable: aClVariable strength: aClStrength)! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 15:27'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 15:27:00'!
 addPointStays: points
 	"Add weak stays to the x and y parts of each point.  These have declining weights so that the solver will try to satisfy the x and y stays on the same point, rather than the x stay on one and the y stay on another."
 	| wght mult |
@@ -1263,19 +1263,19 @@ addPointStays: points
 		self addConstraint: (ClStayConstraint variable: p y strength: ClStrength weak weight: wght).
 		wght := wght * mult]! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 15:27'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 15:27:00'!
 addStay: aClVariable
 	"Add a weak stay to aClVariable"
 
 	self addStay: aClVariable strength: ClStrength weak! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 15:29'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 15:29:00'!
 addStay: aClVariable strength: aClStrength
 	"Add a weak stay to aClVariable at the given strength."
 
 	self addConstraint: (ClStayConstraint variable: aClVariable strength: aClStrength)! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 5/23/2001 14:52'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 23/May/2001 14:52:00'!
 autoSolve
 	"the 'autoSolve' instance variable determines whether the solver should 
 		automatically optimize and set external variable values after each 
@@ -1284,11 +1284,11 @@ autoSolve
 		constrained variables"
 	^autoSolve! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 5/23/2001 14:53'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 23/May/2001 14:53:00'!
 autoSolve: s
 	autoSolve := s! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 15:32'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 15:32:00'!
 beginEdit
 	"Do any needed setup to begin editing.  The sequence of calls should be:
 		solver addEditVar: v1; addEditVar: v2; ... etc.
@@ -1302,7 +1302,7 @@ beginEdit
 
 	self newEditConstants: (Array new: self editVars size)! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 15:34'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 15:34:00'!
 endEdit
 	"Do any needed cleanup after editing.  (See ClSimplexSolver beginEdit for sequence of calls)."
 
@@ -1310,7 +1310,7 @@ endEdit
 	self editVars: #().
 	self editConstraints: #()! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 5/23/2001 14:27'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 23/May/2001 14:27:00'!
 removeConstraint: cn
 	"Remove the constraint cn to the tableau.  Also remove any error variables associated with cn.
 
@@ -1401,7 +1401,7 @@ removeConstraint: cn
 		self optimize: zRow.
 		self setExternalVariables]! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'eem 4/3/2012 09:17'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'eem 3/Apr/2012 09:17:00'!
 reset
 	"Re-initialize this solver from the original constraints, thus getting rid of any accumulated numerical problems.  (Actually, I haven't observed any such problems yet, but here's the method anyway)"
 	| edits stays others |
@@ -1427,7 +1427,7 @@ reset
 	edits do: [:cn | self addConstraint: cn].
 	others do: [:cn | self addConstraint: cn]! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 5/6/2001 23:03'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'jcg 6/May/2001 23:03:00'!
 resolve
 	"Re-solve the current collection of constraints for the new values in newEditConstants."
 
@@ -1437,14 +1437,14 @@ resolve
 	self dualOptimize.
 	self setExternalVariables.! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 5/23/2001 14:29'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'AHB 23/May/2001 14:29:00'!
 solve
 	"optimize and set external variables (useful if autoSolve has been set to false)"
 	self optimize: self objective.
 	self setExternalVariables
 ! !
 
-!ClSimplexSolver methodsFor: 'manipulating' stamp: 'hlsf 7/31/2024 19:08:52'!
+!ClSimplexSolver methodsFor: 'manipulating' stamp: 'hlsf 31/Jul/2024 19:08:52'!
 suggestValue: var newValue: val
 	"We should be editting var.  Suggest a new value for it.
 
@@ -1457,7 +1457,7 @@ suggestValue: var newValue: val
 			^self]].
 	ClError internal signal: 'variable not currently being edited'! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:05'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:05:00'!
 addRow: var expr: expr
 	"Add the constraint var=expr to the tableau.  var is now a basic variable.  Update the column cross-indices.
 
@@ -1468,7 +1468,7 @@ addRow: var expr: expr
 	expr variablesAndCoefficientsDo: [:v :c | 
 		(self columns at: v ifAbsentPut: [Set new]) add: var]! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'eem 4/3/2012 09:17'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'eem 3/Apr/2012 09:17:00'!
 addWithArtificialVariable: expr
 	"Add the constraint expr=0 to the inequality tableau using an artificial variable.  To do this, create an artificial variable av and add av=expr to the inequality tableau, then make av be 0. (Raise an exception if we can't attain av=0.)
 
@@ -1505,7 +1505,7 @@ addWithArtificialVariable: expr
 	self removeRow: az.
 ! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'eem 4/3/2012 09:17'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'eem 3/Apr/2012 09:17:00'!
 chooseSubject: expr
 	"We are trying to add the constraint expr=0 to the tableaux.  Try to choose a subject (a variable to become basic) from among the current variables in expr.  If expr contains any unrestricted variables, then we must choose an unrestricted variable as the subject.  Also, if the subject is new to the solver we won't have to do any substitutions, so we prefer new variables to ones that are currently noted as parametric.  If expr contains only restricted variables, if there is a restricted variable with a negative coefficient that is new to the solver we can make that the subject.  Otherwise we can't find a subject, so return nil.  (In this last case we have to add an artificial variable and use that variable as the subject -- this is done outside this method though.)
 
@@ -1556,7 +1556,7 @@ chooseSubject: expr
 		expr terms keysAndValuesDo: [:v :c | expr terms at: v put: 0.0-c]].
 	^subject! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:18'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:18:00'!
 columns
 	"Answer the dictionary of column cross-indices.  The keys are parametric variables and the values are sets of basic variables.  For each parametric variable p, the set should include all the basic variables whose expression includes p.  The columns may be either restricted or unrestricted variables (they are intermixed in the one tableau).
 	
@@ -1564,7 +1564,7 @@ columns
 
 	^columns! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:21'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:21:00'!
 columns: cols
 	"See ClSimplexSolver columns
 
@@ -1572,7 +1572,7 @@ columns: cols
 	
 	columns := cols! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:22'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:22:00'!
 deltaEditConstant: delta plusErrorVar: plusErrorVar minusErrorVar: minusErrorVar
 
 	"first check if the plusErrorVar is basic"
@@ -1595,7 +1595,7 @@ deltaEditConstant: delta plusErrorVar: plusErrorVar minusErrorVar: minusErrorVar
 		expr incrementConstant: c*delta.
 		(basicVar isRestricted and: [expr constant < 0.0]) ifTrue: [self infeasibleRows add: basicVar]].! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'AHB 5/23/2001 14:58'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'AHB 23/May/2001 14:58:00'!
 dualOptimize
 	"We have set new values for the constants in the edit constraints.  Re-optimize using the dual simplex algorithm."
 	| zRow exitVar entryVar ratio r zc |
@@ -1617,52 +1617,52 @@ dualOptimize
 				ratio isNil ifTrue: [ClError internalError signal].
 				self pivot: entryVar exitVar: exitVar]]]! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:25'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:25:00'!
 editConstraints
 	"An array of ClEditConstraints for the variables being edited.  These must be in the same order as editVars, editPlusErrorVars, and editMinusErrorVars."
 
 	^ editConstraints! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:26'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:26:00'!
 editConstraints: cns
 
 	editConstraints := cns! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:26'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:26:00'!
 editMinusErrorVars
 	"The array of negative error vars for the edit constraints.  These must be in the same order as editPlusErrorVars, editVars, and editConstraints."
 
 	^ editMinusErrorVars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:27'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:27:00'!
 editMinusErrorVars: s
 
 	editMinusErrorVars := s! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:27'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:27:00'!
 editPlusErrorVars
 	"The array of positive error vars for the edit constraints.  These must be in the same order as editMinusErrorVars, editVars, and editConstraints."
 
 	^ editPlusErrorVars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:28'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:28:00'!
 editPlusErrorVars: s
 
 	editPlusErrorVars := s! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:29'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:29:00'!
 editVars
 	"The array of variables being edited.  These must be in the same order as editConstraints, editPlusErrorVars, and editMinusErrorVars."
 
 	^ editVars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:29'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:29:00'!
 editVars: evars
 
 	editVars := evars
 ! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:31'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:31:00'!
 errorVars
 	"Answer a dictionary giving the error variables for a non-required constraint.
 
@@ -1670,12 +1670,12 @@ errorVars
 
 	^ errorVars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:31'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:31:00'!
 errorVars: evars
 
 	errorVars := evars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'eem 4/3/2012 09:21'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'eem 3/Apr/2012 09:21:00'!
 findEditErrorIndex: eVars
 	"find the index in editPlusErrorVars of one of the variables in eVars"
 
@@ -1684,7 +1684,7 @@ findEditErrorIndex: eVars
 		index > 0 ifTrue: [^ index]].
 	ClError internalError signal  "didn't find a variable"! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:33'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:33:00'!
 infeasibleRows
 	"Answer the collection of basic variables that have infeasible rows (used when re-optimizing).
 
@@ -1692,13 +1692,13 @@ infeasibleRows
 
 	^ infeasibleRows! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:34'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:34:00'!
 infeasibleRows: r
 	"r 	<OrderedCollection <ClSlackVariable>>"
 
 	infeasibleRows := r! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'AHB 5/23/2001 15:00'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'AHB 23/May/2001 15:00:00'!
 initialize
 	| zRow |
 
@@ -1721,7 +1721,7 @@ initialize
 	self rows at: self objective put: zRow.
 ! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'eem 4/3/2012 09:17'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'eem 3/Apr/2012 09:17:00'!
 makeExpression: cn
 	"Make a new linear expression representing the constraint cn, replacing any basic variables with their defining expressions.  Normalize if necessary so that the constant is non-negative.  If the constraint is non-required give its error variables an appropriate weight in the objective function.
 
@@ -1790,7 +1790,7 @@ makeExpression: cn
 		expr terms keysAndValuesDo: [:v :c | expr terms at: v put: 0.0-c]].
 	^expr! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:41'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:41:00'!
 markerVars
 	"Answer a lookup table giving the marker variable for each constraint (used when deleting a constraint).
 	
@@ -1798,25 +1798,25 @@ markerVars
 
 	^ markerVars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:42'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:42:00'!
 markerVars: dict
 	"dict	<Dictionary <ClConstraint> -> <ClAbstractVariable>"
 
 	markerVars := dict! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:43'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:43:00'!
 newEditConstants
 	"The array of constants for the edit constraints for the next iteration.  These must be in the same order as editPlusErrorVars and editMinusErrorVars"
 
 	^ newEditConstants! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:43'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:43:00'!
 newEditConstants: n
 
 	newEditConstants := n
 ! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:44'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:44:00'!
 noteAddedVariable: var subject: subject
 	"Variable var has been added to an expression.  If the expression is in a tableau the corresponding basic variable is subject (or if subject is nil then it's in the objective function).  Update the column cross-indices.
 
@@ -1825,7 +1825,7 @@ noteAddedVariable: var subject: subject
 
 	subject notNil ifTrue: [(self columns at: var ifAbsentPut: [Set new]) add: subject]! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:45'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:45:00'!
 noteRemovedVariable: var subject: subject
 	"Variable var has been removed from an expression.  If the expression is in a tableau the corresponding basic variable is subject (or if subject is nil then it's in the objective function).  Update the column cross-indices.
 
@@ -1834,18 +1834,18 @@ noteRemovedVariable: var subject: subject
 
 	subject notNil ifTrue: [(self columns at: var) remove: subject]! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:46'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:46:00'!
 objective
 	"Answer the objective function (a ClLinearExpression)"
 
 	^ objective! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:46'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:46:00'!
 objective: aClLinearExpression
 
 	objective := aClLinearExpression! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'AHB 5/23/2001 15:27'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'AHB 23/May/2001 15:27:00'!
 optimize: zVar
 	"Minimize the value of the objective.  (The tableau should already be feasible.)
 	
@@ -1879,7 +1879,7 @@ optimize: zVar
 		minRatio isNil ifTrue: [ClError internalError signal].
 		self pivot: entryVar exitVar: exitVar]! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/6/2001 23:50'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 6/May/2001 23:50:00'!
 pivot: entryVar exitVar: exitVar
 	"Do a pivot.  Move entryVar into the basis (i.e. make it a basic variable), and move exitVar out of the basis (i.e. make it a parametric variable)."
 	| expr |
@@ -1892,18 +1892,18 @@ pivot: entryVar exitVar: exitVar
 	self substituteOut: entryVar expr: expr.
 	self addRow: entryVar expr: expr.! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:35'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:35:00'!
 prevEditConstants
 	"The array of constants for the edit constraints on the previous iteration.  These must be in the same order as editPlusErrorVars and editMinusErrorVars"
 	
 	^ prevEditConstants! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:35'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:35:00'!
 prevEditConstants: constants
 
 	prevEditConstants := constants! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:36'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:36:00'!
 removeParametricVar: var
 	"Remove the parametric variable var, updating the appropriate column and row entries.
 	
@@ -1913,7 +1913,7 @@ removeParametricVar: var
 	set := self columns removeKey: var.
 	set do: [:v | (self rows at: v) terms removeKey: var]! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:38'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:38:00'!
 removeRow: var 
 	"var should be a basic variable, so that the tableau contains the constraint var=expr.  Remove this row, and update the column cross-indices.  Also remove it from infeasibleRows if present.  Answer expr.
 	
@@ -1926,7 +1926,7 @@ removeRow: var
 	self infeasibleRows remove: var ifAbsent: [ ].
 	^ expr! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/8/2001 08:02'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 8/May/2001 08:02:00'!
 resetEditConstants
 	"Each of the non-required edits will be represented by an equation of the form
 		v = c + eplus - eminus
@@ -1952,7 +1952,7 @@ where v is the variable with the edit, c is the previous edit value, and eplus a
 			plusErrorVar: (self editPlusErrorVars at: i)
 			minusErrorVar: (self editMinusErrorVars at: i)].! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:43'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:43:00'!
 resetStayConstants
 	"Each of the non-required stays will be represented by an equation of the form
 			v = c + eplus - eminus
@@ -1964,7 +1964,7 @@ where v is the variable with the stay, c is the previous value of v, and eplus a
 				self rows at: (self stayMinusErrorVars at: i) ifAbsent: [nil]].
 		expr ifNotNil: [expr constant: 0.0]]! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:44'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:44:00'!
 resolve: cs
 	"Re-solve the current collection of constraints for new values for the constants of the edit variables.
 
@@ -1973,7 +1973,7 @@ resolve: cs
 	self newEditConstants: cs.
 	self resolve! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:45'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:45:00'!
 rows
 	"Answer the dictionary of rows in the tableau.  The keys are basic variables and the values are the corresponding expressions.  Both unrestricted and restricted variables are included in the one tableau (i.e. the keys may be either restricted or unrestricted variables).
 	
@@ -1981,7 +1981,7 @@ rows
 	
 	^ rows! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:46'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:46:00'!
 rows: r
 	"See ClSimplexSolver rows.
 	
@@ -1989,37 +1989,37 @@ rows: r
 	
 	rows := r! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:48'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:48:00'!
 setExternalVariables
 	"Set each external basic variable to its value, and set each external parametric variable to 0.  (It isn't clear that we will ever have external parametric variables -- every external variable should either have a stay on it, or have an equation that defines it in terms of other external variables that do have stays.  For the moment I'll put this in though.)  Variables that are internal to the solver don't actually store values -- their values are just implicit in the tableu -- so we don't need to set them."
 
 	self rows keysAndValuesDo: [:var :expr | var isExternal ifTrue: [var value: expr constant]].
 	self columns keysDo: [:var | var isExternal ifTrue: [var value: 0.0]].! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:49'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:49:00'!
 stayMinusErrorVars
 	"Answer an array of negative error variables for the stay constraints.  The corresponding positive error is in the same place in stayPlusErrorVars"
 	
 	^ stayMinusErrorVars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:49'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:49:00'!
 stayMinusErrorVars: vs
 
 	stayMinusErrorVars := vs
 ! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:49'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:49:00'!
 stayPlusErrorVars
 	"Answer an array of plus error variables for the stay constraints.  The corresponding negative error is in the same place in stayMinusErrorVars"
 	
 	^ stayPlusErrorVars! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:50'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:50:00'!
 stayPlusErrorVars: vs
 
 	stayPlusErrorVars := vs! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'eem 4/3/2012 09:17'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'eem 3/Apr/2012 09:17:00'!
 substituteOut: oldVar expr: expr
 	"Replace all occurrences of oldVar with expr (including in the objective function), and update the column cross-references.  oldVar should now be a basic variable."
 	| col |
@@ -2030,7 +2030,7 @@ substituteOut: oldVar expr: expr
 		row substituteOut: oldVar expr: expr subject: v solver: self.
 		(v isRestricted and: [row constant<0.0]) ifTrue: [self infeasibleRows add: v]].! !
 
-!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 5/7/2001 16:52'!
+!ClSimplexSolver methodsFor: 'private' stamp: 'jcg 7/May/2001 16:52:00'!
 tryAddingDirectly: expr
 	"We are trying to add the constraint expr=0 to the appropriate tableau.  Try to add expr directly to the tableax without creating an artificial variable.  Return true if successful and false if not.
 
@@ -2045,52 +2045,52 @@ tryAddingDirectly: expr
 	self addRow: subject expr: expr.
 	^ true! !
 
-!ClSimplexSolver class methodsFor: 'constants' stamp: 'AHB 5/23/2001 15:32'!
+!ClSimplexSolver class methodsFor: 'constants' stamp: 'AHB 23/May/2001 15:32:00'!
 epsilon
 
 	^ Epsilon! !
 
-!ClSimplexSolver class methodsFor: 'class initialization' stamp: 'AHB 5/23/2001 15:31'!
+!ClSimplexSolver class methodsFor: 'class initialization' stamp: 'AHB 23/May/2001 15:31:00'!
 initialize
 
 	Epsilon := 1.0e-8! !
 
-!ClSimplexSolver class methodsFor: 'instance creation' stamp: 'jcg 5/6/2001 15:13'!
+!ClSimplexSolver class methodsFor: 'instance creation' stamp: 'jcg 6/May/2001 15:13:00'!
 new
 
 	^ super new initialize! !
 
-!ClStrength methodsFor: 'accessing' stamp: 'jcg 5/7/2001 17:00'!
+!ClStrength methodsFor: 'accessing' stamp: 'jcg 7/May/2001 17:00:00'!
 isRequired
 
 	^ self == RequiredStrength! !
 
-!ClStrength methodsFor: 'accessing' stamp: 'jcg 5/7/2001 17:02'!
+!ClStrength methodsFor: 'accessing' stamp: 'jcg 7/May/2001 17:02:00'!
 symbolicWeight
 
 	^ symbolicWeight! !
 
-!ClStrength methodsFor: 'private' stamp: 'jcg 5/7/2001 17:02'!
+!ClStrength methodsFor: 'private' stamp: 'jcg 7/May/2001 17:02:00'!
 name
 
 	^ name! !
 
-!ClStrength methodsFor: 'private' stamp: 'jcg 5/7/2001 17:02'!
+!ClStrength methodsFor: 'private' stamp: 'jcg 7/May/2001 17:02:00'!
 name: aString
 
 	name := aString! !
 
-!ClStrength methodsFor: 'private' stamp: 'jcg 5/7/2001 17:03'!
+!ClStrength methodsFor: 'private' stamp: 'jcg 7/May/2001 17:03:00'!
 symbolicWeight: weight
 
 	symbolicWeight := weight! !
 
-!ClStrength methodsFor: 'printing' stamp: 'jcg 5/7/2001 17:00'!
+!ClStrength methodsFor: 'printing' stamp: 'jcg 7/May/2001 17:00:00'!
 printOn: aStream
 
 	aStream nextPutAll: self name! !
 
-!ClStrength class methodsFor: 'class initialization' stamp: 'jcg 5/7/2001 18:29'!
+!ClStrength class methodsFor: 'class initialization' stamp: 'jcg 7/May/2001 18:29:00'!
 initialize
 	"Initialize the class variables to the pre-defined strengths."
 
@@ -2111,23 +2111,23 @@ initialize
 	WeakStrength := self new.
 	WeakStrength name: 'weak'; symbolicWeight: w.! !
 
-!ClStrength class methodsFor: 'strengths' stamp: 'jcg 5/7/2001 16:56'!
+!ClStrength class methodsFor: 'strengths' stamp: 'jcg 7/May/2001 16:56:00'!
 medium
 
 	^ MediumStrength ! !
 
-!ClStrength class methodsFor: 'strengths' stamp: 'jcg 5/7/2001 16:56'!
+!ClStrength class methodsFor: 'strengths' stamp: 'jcg 7/May/2001 16:56:00'!
 nLevels
 	"Answer the number of non-required strengths."
 
 	^ 3! !
 
-!ClStrength class methodsFor: 'strengths' stamp: 'jcg 5/7/2001 16:56'!
+!ClStrength class methodsFor: 'strengths' stamp: 'jcg 7/May/2001 16:56:00'!
 required
 
 	^ RequiredStrength ! !
 
-!ClStrength class methodsFor: 'strengths' stamp: 'jcg 5/7/2001 16:57'!
+!ClStrength class methodsFor: 'strengths' stamp: 'jcg 7/May/2001 16:57:00'!
 strengthsDo: block
 	"Evaluate the block for each defined strength, strongest to weakest.
 
@@ -2139,17 +2139,17 @@ strengthsDo: block
 		value: MediumStrength;
 		value: WeakStrength! !
 
-!ClStrength class methodsFor: 'strengths' stamp: 'jcg 5/7/2001 16:57'!
+!ClStrength class methodsFor: 'strengths' stamp: 'jcg 7/May/2001 16:57:00'!
 strong
 
 	^ StrongStrength ! !
 
-!ClStrength class methodsFor: 'strengths' stamp: 'jcg 5/7/2001 16:58'!
+!ClStrength class methodsFor: 'strengths' stamp: 'jcg 7/May/2001 16:58:00'!
 weak
 
 	^ WeakStrength ! !
 
-!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 5/8/2001 08:03'!
+!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 8/May/2001 08:03:00'!
 * n
 	"Multiply this symbolic weight by n (n should be a number)"
 	| result |
@@ -2159,7 +2159,7 @@ weak
 	1 to: self size do: [:i | result at: i put: n*(self at: i)].
 	^ result! !
 
-!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 5/8/2001 08:03'!
+!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 8/May/2001 08:03:00'!
 + n
 	"Add this symbolic weight to n (which must also be a symbolic weight)"
 	| result |
@@ -2169,7 +2169,7 @@ weak
 	1 to: self size do: [:i | result at: i put: (self at: i) + (n at: i)].
 	^ result! !
 
-!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 5/8/2001 08:04'!
+!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 8/May/2001 08:04:00'!
 - n
 	"Subtract n from this symbolic weight (n must also be a symbolic weight)"
 	| result |
@@ -2179,7 +2179,7 @@ weak
 	1 to: self size do: [:i | result at: i put: (self at: i) - (n at: i)].
 	^ result! !
 
-!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 5/8/2001 08:04'!
+!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 8/May/2001 08:04:00'!
 / n
 	"Divide this symbolic weight by n (n should be a number)"
 	| result |
@@ -2189,7 +2189,7 @@ weak
 	1 to: self size do: [:i | result at: i put: (self at: i)/n].
 	^ result! !
 
-!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 5/8/2001 08:04'!
+!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 8/May/2001 08:04:00'!
 clApprox: s
 	"Answer true if this symbolic weight is approximately equal to s.  The argument s must be another symbolic weight -- we can't compare symbolic weights with ordinary numbers."
 
@@ -2198,13 +2198,13 @@ clApprox: s
 		((self at: i) clApprox: (s at: i)) ifFalse: [^ false]].
 	^ true! !
 
-!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 5/7/2001 17:12'!
+!ClSymbolicWeight methodsFor: 'operations' stamp: 'jcg 7/May/2001 17:12:00'!
 clApproxZero
 	"Answer true if this symbolic weight is approximately zero"
 
 	^ self clApprox: Zero! !
 
-!ClSymbolicWeight methodsFor: 'operations' stamp: 'AHB 5/23/2001 15:32'!
+!ClSymbolicWeight methodsFor: 'operations' stamp: 'AHB 23/May/2001 15:32:00'!
 definitelyNegative
 	"return true if this symbolic weight is negative.  Allow coefficients that are within epsilon of
 		0 to count as 0"
@@ -2218,7 +2218,7 @@ definitelyNegative
 	^false
 ! !
 
-!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 5/8/2001 08:05'!
+!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 8/May/2001 08:05:00'!
 < n
 	| a b |
 	n isSymbolicWeight ifFalse: [ClError internalError signal].
@@ -2231,7 +2231,7 @@ definitelyNegative
 	"all elements were equal"
 	^ false! !
 
-!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 5/8/2001 08:05'!
+!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 8/May/2001 08:05:00'!
 <= n
 	| a b |
 	n isSymbolicWeight ifFalse: [ClError internalError signal].
@@ -2244,7 +2244,7 @@ definitelyNegative
 	"all elements were equal"
 	^ true! !
 
-!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 5/7/2001 17:09'!
+!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 7/May/2001 17:09:00'!
 = n
 
 	n isSymbolicWeight ifFalse: [^false].
@@ -2253,24 +2253,24 @@ definitelyNegative
 	"all elements were equal"
 	^ true! !
 
-!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 5/7/2001 17:10'!
+!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 7/May/2001 17:10:00'!
 > n
 
 	^ (self <= n) not
 ! !
 
-!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 5/7/2001 17:10'!
+!ClSymbolicWeight methodsFor: 'comparing' stamp: 'jcg 7/May/2001 17:10:00'!
 >= n
 
 	^ (self < n) not
 ! !
 
-!ClSymbolicWeight methodsFor: 'accessing' stamp: 'jcg 5/7/2001 17:13'!
+!ClSymbolicWeight methodsFor: 'accessing' stamp: 'jcg 7/May/2001 17:13:00'!
 isSymbolicWeight
 
 	^ true! !
 
-!ClSymbolicWeight methodsFor: 'printing' stamp: 'jcg 5/7/2001 17:13'!
+!ClSymbolicWeight methodsFor: 'printing' stamp: 'jcg 7/May/2001 17:13:00'!
 printOn: aStream
 
 	aStream nextPutAll: '['.
@@ -2278,24 +2278,24 @@ printOn: aStream
 	2 to: self size do: [:i | aStream nextPutAll: ','.  (self at: i) printOn: aStream].
 	aStream nextPutAll: ']'! !
 
-!ClSymbolicWeight class methodsFor: 'class initialization' stamp: 'jcg 5/7/2001 18:29'!
+!ClSymbolicWeight class methodsFor: 'class initialization' stamp: 'jcg 7/May/2001 18:29:00'!
 initialize
 	"Initialize the class variables to the pre-defined strengths."
 
 	Zero := self new.
 	1 to: Zero size do: [:i | Zero at: i put: 0.0]! !
 
-!ClSymbolicWeight class methodsFor: 'instance creation' stamp: 'jcg 5/7/2001 17:04'!
+!ClSymbolicWeight class methodsFor: 'instance creation' stamp: 'jcg 7/May/2001 17:04:00'!
 new
 
 	^ self basicNew: ClStrength nLevels! !
 
-!ClSymbolicWeight class methodsFor: 'accessing' stamp: 'jcg 5/7/2001 17:04'!
+!ClSymbolicWeight class methodsFor: 'accessing' stamp: 'jcg 7/May/2001 17:04:00'!
 zero
 
 	^ Zero! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 19:55'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 19:55:00'!
 addDelete1
 
 "
@@ -2334,7 +2334,7 @@ addDelete1
 		show: (result ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 21:20'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 21:20:00'!
 addDelete2
 
 "
@@ -2373,7 +2373,7 @@ addDelete2
 		show: (result ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 21:23'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 21:23:00'!
 addDelete3
 
 "
@@ -2402,7 +2402,7 @@ addDelete3
 		show: (result ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 21:23'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 21:23:00'!
 edit1
 
 "
@@ -2456,13 +2456,13 @@ edit1
 		show: (result ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 19:57'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 19:57:00'!
 haltFirst: h
 	"haltFirst is a boolean flag ... if it is true, halt before running each test, so that the user can step through the test if desired"
 	
 	haltFirst := h.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/8/2001 07:52'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 8/May/2001 07:52:00'!
 inconsistent1
 
 "
@@ -2495,7 +2495,7 @@ inconsistent1
 		show: (signalled ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/8/2001 07:52'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 8/May/2001 07:52:00'!
 inconsistent2
 
 "
@@ -2528,7 +2528,7 @@ inconsistent2
 		show: (signalled ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 20:07'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 20:07:00'!
 stay1
 
 "
@@ -2556,7 +2556,7 @@ stay1
 		show: (result ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 20:07'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 20:07:00'!
 twoSolutions
 
 "
@@ -2596,7 +2596,7 @@ twoSolutions
 		show: (result ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 5/7/2001 20:08'!
+!ClCassowaryTester methodsFor: 'testing' stamp: 'jcg 7/May/2001 20:08:00'!
 weighted1
 
 "
@@ -2627,50 +2627,50 @@ weighted1
 		show: (result ifTrue: ['passed'] ifFalse: ['failed']); 
 		cr.! !
 
-!ClCassowaryTester methodsFor: 'initialization' stamp: 'jcg 7/4/2008 10:22'!
+!ClCassowaryTester methodsFor: 'initialization' stamp: 'jcg 4/Jul/2008 10:22:00'!
 initialize
 	super initialize.
 	haltFirst := false.! !
 
-!ClError class methodsFor: 'instance creation' stamp: 'jcg 5/16/2001 09:30'!
+!ClError class methodsFor: 'instance creation' stamp: 'jcg 16/May/2001 09:30:00'!
 error
 
 	^ self new messageText: '(ExCLError) An error has occured in CL'
 
 ! !
 
-!ClError class methodsFor: 'instance creation' stamp: 'jcg 5/16/2001 09:30'!
+!ClError class methodsFor: 'instance creation' stamp: 'jcg 16/May/2001 09:30:00'!
 internal
 
 	^ self new messageText: '(ExCLInternalError) An internal error has occured'
 
 ! !
 
-!ClError class methodsFor: 'instance creation' stamp: 'jcg 5/16/2001 09:30'!
+!ClError class methodsFor: 'instance creation' stamp: 'jcg 16/May/2001 09:30:00'!
 nonlinear
 
 	^ self new messageText: '(ExCLNonlinearExpression) The resulting expression would be nonlinear' 
 
 ! !
 
-!ClError class methodsFor: 'instance creation' stamp: 'jcg 5/16/2001 09:31'!
+!ClError class methodsFor: 'instance creation' stamp: 'jcg 16/May/2001 09:31:00'!
 notEnoughStays
 
 	^ self new messageText: '(ExCLNotEnoughStays) There are not enough stays to give specific values to every variable'  
 
 ! !
 
-!ClError class methodsFor: 'instance creation' stamp: 'jcg 5/16/2001 09:31'!
+!ClError class methodsFor: 'instance creation' stamp: 'jcg 16/May/2001 09:31:00'!
 requiredFailure
 
 	^ self new messageText: '(ExCLRequiredFailure) A required constraint cannot be satisfied' ! !
 
-!ClError class methodsFor: 'instance creation' stamp: 'jcg 5/16/2001 09:31'!
+!ClError class methodsFor: 'instance creation' stamp: 'jcg 16/May/2001 09:31:00'!
 tooDifficult
 
 	^ self new messageText: '(ExCLError) An error has occured in CL' ! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/31/2024 19:10:02'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 31/Jul/2024 19:10:02'!
 beginManipulation
 	"This method is called when a constrainable point is starting to be manipulated, i.e., upon mouse down.  The constrainable point is stored in the 'dragPoint' instance variable, and the corresponding plan for moving that point is stored in the 'plan' instance variable.
 
@@ -2689,7 +2689,7 @@ The order of messages is:
 	 "drag point not found"
 	self error: 'Drag point not found' ! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'jcg 5/8/2001 11:56'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'jcg 8/May/2001 11:56:00'!
 endManipulation
 	"This method is called when a constrainable point is ending being manipulated, i.e., upon mouse up.  The constrainable point is stored in the 'dragPoint' instance variable, and the corresponding plan for moving that point is stored in the 'plan' instance variable.
 
@@ -2701,25 +2701,25 @@ endManipulation
 	cs endEdit.
 	self changed.! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/29/2024 22:22:41'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 29/Jul/2024 22:22:41'!
 handlesMouseDown: evt
 	^ true! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/30/2024 19:07:46'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 30/Jul/2024 19:07:46'!
 handlesMouseHover
 
 	^ true! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'jcg 5/8/2001 16:21'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'jcg 8/May/2001 16:21:00'!
 handlesMouseOver: evt
 
 	^ true! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/29/2024 22:41:08'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 29/Jul/2024 22:41:08'!
 handlesMouseStillDown: evt
 	^ true! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/30/2024 19:24:24'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 30/Jul/2024 19:24:24'!
 manipulationMoveTo: aPoint
 	"This method is called when a constrainable point is manipulated using the mouse, i.e., during mouse motion.  aPoint is the location of the mouse and thus the new requested location of the constrainable point.  The constrainable point is stored in the 'dragPoint' instance variable, and the corresponding plan for moving that point is stored in the 'plan' instance variable.
 
@@ -2732,7 +2732,7 @@ manipulationMoveTo: aPoint
 	cs suggestValue: dragPoint y newValue: aPoint y asFloat.
 	cs resolve.! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/30/2024 19:11:27'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 30/Jul/2024 19:11:27'!
 mouseButton1Down: evt localPosition: position
 	grabPoint ifNil: [^ self].
 	dragPoint := grabPoint.
@@ -2741,7 +2741,7 @@ mouseButton1Down: evt localPosition: position
 	self beginManipulation
 ! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/30/2024 19:11:21'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 30/Jul/2024 19:11:21'!
 mouseButton1Up: evt localPosition: position
 	dragPoint ifNil: [^ self].
 	dragPoint := nil.
@@ -2749,7 +2749,7 @@ mouseButton1Up: evt localPosition: position
 	self endManipulation
 ! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/31/2024 18:40:55'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 31/Jul/2024 18:40:55'!
 mouseHover: evt localPosition: position
 	| threshold |
 	dragPoint ifNil: [
@@ -2765,13 +2765,13 @@ mouseHover: evt localPosition: position
 			grabPoint := nil.
 			self redrawNeeded ]]! !
 
-!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 7/30/2024 19:22:33'!
+!ClDemoWindow methodsFor: 'event handling' stamp: 'hlsf 30/Jul/2024 19:22:33'!
 mouseMove: evt localPosition: position
 	dragPoint ifNil: [^ self].
 	self manipulationMoveTo: (evt  eventPosition - self morphPosition ).
 	self redrawNeeded ! !
 
-!ClDemoWindow methodsFor: 'enumerating' stamp: 'jcg 5/8/2001 09:23'!
+!ClDemoWindow methodsFor: 'enumerating' stamp: 'jcg 8/May/2001 09:23:00'!
 constraintPointsDo: aBlock
 	"Evaluate this block for each of the constrainable points in this demo.  Constrainable points are those that can be manipulated by the mouse.  A constraint point is a Point object whose x and y instance variables hold instances of ClVariable.
 
@@ -2779,7 +2779,7 @@ constraintPointsDo: aBlock
 
 	self subclassResponsibility! !
 
-!ClDemoWindow methodsFor: 'initialization' stamp: 'jcg 5/8/2001 09:27'!
+!ClDemoWindow methodsFor: 'initialization' stamp: 'jcg 8/May/2001 09:27:00'!
 createForm
 
 	self error: 'this needs to be redone for morphic.'.
@@ -2819,7 +2819,7 @@ createForm
 			clientData: nil"
 ! !
 
-!ClDemoWindow methodsFor: 'initialization' stamp: 'jcg 5/8/2001 09:27'!
+!ClDemoWindow methodsFor: 'initialization' stamp: 'jcg 8/May/2001 09:27:00'!
 createWindow
 
 	self error: 'this needs to be redone for morphic.'.
@@ -2844,7 +2844,7 @@ createWindow
 	self createForm"
 ! !
 
-!ClDemoWindow methodsFor: 'initialization' stamp: 'hlsf 7/29/2024 22:36:03'!
+!ClDemoWindow methodsFor: 'initialization' stamp: 'hlsf 29/Jul/2024 22:36:03'!
 initialize
 	"Initialize the demo structures before the widgets are created."
 
@@ -2853,27 +2853,27 @@ initialize
 	cs := ClSimplexSolver new.
 	errorPixel := nil! !
 
-!ClDemoWindow methodsFor: 'drawing' stamp: 'hlsf 7/29/2024 22:32:06'!
+!ClDemoWindow methodsFor: 'drawing' stamp: 'drgeo 7/Jun/2026 18:59:58'!
 drawBackgroundOn: aCanvas
 	aCanvas
-		fillRectangle: self morphLocalBounds
+		fillRectangle: self localBounds
 		color: color
 		borderWidth: borderWidth
 		borderStyleSymbol: #simple
 		baseColorForBorder: borderColor.! !
 
-!ClDemoWindow methodsFor: 'drawing' stamp: 'jcg 5/8/2001 12:08'!
+!ClDemoWindow methodsFor: 'drawing' stamp: 'jcg 8/May/2001 12:08:00'!
 drawForegroundOn: aCanvas
 
 ! !
 
-!ClDemoWindow methodsFor: 'drawing' stamp: 'jcg 5/8/2001 11:54'!
+!ClDemoWindow methodsFor: 'drawing' stamp: 'jcg 8/May/2001 11:54:00'!
 drawGrabBox
 
 	self flag: #schwa.
 	Transcript show: 'grab box'; cr! !
 
-!ClDemoWindow methodsFor: 'drawing' stamp: 'hlsf 7/30/2024 19:24:43'!
+!ClDemoWindow methodsFor: 'drawing' stamp: 'hlsf 30/Jul/2024 19:24:43'!
 drawGrabBoxOn: aCanvas
 
 	grabPoint ifNotNil: [
@@ -2883,7 +2883,7 @@ drawGrabBoxOn: aCanvas
 			borderWidth: 1
 			color: Color yellow]! !
 
-!ClDemoWindow methodsFor: 'drawing' stamp: 'jcg 5/8/2001 17:11'!
+!ClDemoWindow methodsFor: 'drawing' stamp: 'jcg 8/May/2001 17:11:00'!
 drawOn: aCanvas
 
 	self 
@@ -2892,14 +2892,14 @@ drawOn: aCanvas
 		drawGrabBoxOn: aCanvas.
 ! !
 
-!ClDemoWindow methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:19'!
+!ClDemoWindow methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:19:00'!
 fixupPoint: aPoint with: deepCopier
 	"Answer a Point that contains the deeply copied counterparts of its x and y values"
 
 	^ (deepCopier references at: aPoint x) @ (deepCopier references at: aPoint y)
 	! !
 
-!ClDemoWindow methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:21'!
+!ClDemoWindow methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:21:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -2907,21 +2907,21 @@ veryDeepFixupWith: deepCopier
 	grabPoint ifNotNil: [grabPoint := self fixupPoint: grabPoint with: deepCopier].
 	dragPoint ifNotNil: [dragPoint := self fixupPoint: dragPoint with: deepCopier].! !
 
-!ClDemoWindow methodsFor: 'defaults' stamp: 'jcg 5/8/2001 11:59'!
+!ClDemoWindow methodsFor: 'defaults' stamp: 'jcg 8/May/2001 11:59:00'!
 grabThreshold
 
 	^ 7@7! !
 
-!ClDemoWindow methodsFor: 'defaults' stamp: 'jcg 5/8/2001 12:00'!
+!ClDemoWindow methodsFor: 'defaults' stamp: 'jcg 8/May/2001 12:00:00'!
 initialExtent
 
 	^ 300@300! !
 
-!ClDemoWindow methodsFor: 'geometry testing' stamp: 'hlsf 7/30/2024 19:36:30'!
+!ClDemoWindow methodsFor: 'geometry testing' stamp: 'hlsf 30/Jul/2024 19:36:30'!
 requiresVectorCanvas
 	^ true! !
 
-!ClDemoWindow class methodsFor: 'instance creation' stamp: 'jcg 5/8/2001 08:41'!
+!ClDemoWindow class methodsFor: 'instance creation' stamp: 'jcg 8/May/2001 08:41:00'!
 makeDemos
 	"statements to build various demos"
 
@@ -2938,7 +2938,7 @@ makeDemos
 "	ClSequenceDiagramDemo1 new openInWorld."
 	(ClBinaryTreeDemo height: 4) openInWorld.! !
 
-!ClBinaryTreeDemo methodsFor: 'enumerating' stamp: 'jcg 5/8/2001 08:32'!
+!ClBinaryTreeDemo methodsFor: 'enumerating' stamp: 'jcg 8/May/2001 08:32:00'!
 childrenAndParentsDo: aBlock
 	"Evaluate aBlock for all children and parents, starting with leaves and going up the tree."
 	| parentcount left right parent |
@@ -2954,12 +2954,12 @@ childrenAndParentsDo: aBlock
 				value: right 
 				value: parent]]! !
 
-!ClBinaryTreeDemo methodsFor: 'enumerating' stamp: 'jcg 5/8/2001 08:33'!
+!ClBinaryTreeDemo methodsFor: 'enumerating' stamp: 'jcg 8/May/2001 08:33:00'!
 constraintPointsDo: aBlock
 
 	nodes do: [:each | aBlock value: each]! !
 
-!ClBinaryTreeDemo methodsFor: 'initialization' stamp: 'jcg 5/8/2001 23:33'!
+!ClBinaryTreeDemo methodsFor: 'initialization' stamp: 'jcg 8/May/2001 23:33:00'!
 createConstraints
 	| sorted inset spacing winWidth winHeight root |
 
@@ -2997,12 +2997,12 @@ createConstraints
 	cs addBounds: root x lowerBound: inset upperBound: winWidth-inset.
 	cs addBounds: root y lowerBound: inset upperBound: winHeight-inset.! !
 
-!ClBinaryTreeDemo methodsFor: 'initialization' stamp: 'jcg 5/8/2001 23:28'!
+!ClBinaryTreeDemo methodsFor: 'initialization' stamp: 'jcg 8/May/2001 23:28:00'!
 height: aNumber
 
 	height := aNumber! !
 
-!ClBinaryTreeDemo methodsFor: 'initialization' stamp: 'jcg 5/8/2001 23:28'!
+!ClBinaryTreeDemo methodsFor: 'initialization' stamp: 'jcg 8/May/2001 23:28:00'!
 initialize
 	| xspace yspace index nleaves nodecount left right px |
 
@@ -3036,7 +3036,7 @@ initialize
 
 	self createConstraints.! !
 
-!ClBinaryTreeDemo methodsFor: 'drawing' stamp: 'hlsf 7/30/2024 21:19:20'!
+!ClBinaryTreeDemo methodsFor: 'drawing' stamp: 'hlsf 30/Jul/2024 21:19:20'!
 drawForegroundOn: aCanvas
 
 	lines do: [:each |
@@ -3050,22 +3050,22 @@ drawForegroundOn: aCanvas
 			fillRectangle: ((-5@-5 corner: 5@5) translatedBy: each valuePoint)
 			color: Color yellow].! !
 
-!ClBinaryTreeDemo methodsFor: 'defaults' stamp: 'jcg 5/8/2001 23:30'!
+!ClBinaryTreeDemo methodsFor: 'defaults' stamp: 'jcg 8/May/2001 23:30:00'!
 initialExtent
 
 	^ 500@300! !
 
-!ClBinaryTreeDemo methodsFor: 'defaults' stamp: 'jcg 5/8/2001 23:30'!
+!ClBinaryTreeDemo methodsFor: 'defaults' stamp: 'jcg 8/May/2001 23:30:00'!
 inset
 	
 	^ 10.0! !
 
-!ClBinaryTreeDemo methodsFor: 'defaults' stamp: 'jcg 5/8/2001 23:31'!
+!ClBinaryTreeDemo methodsFor: 'defaults' stamp: 'jcg 8/May/2001 23:31:00'!
 spacing
 	
 	^ 10.0! !
 
-!ClBinaryTreeDemo methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:36'!
+!ClBinaryTreeDemo methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:36:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -3081,7 +3081,7 @@ veryDeepFixupWith: deepCopier
 			at: key
 			put: (pointArray collect: [:pt | self fixupPoint: pt with: deepCopier])].! !
 
-!ClBinaryTreeDemo class methodsFor: 'instance creation' stamp: 'jcg 5/8/2001 08:30'!
+!ClBinaryTreeDemo class methodsFor: 'instance creation' stamp: 'jcg 8/May/2001 08:30:00'!
 height: h
 	| demo |
 
@@ -3090,13 +3090,13 @@ height: h
 	demo initialize.
 	^ demo! !
 
-!ClBoundedLineDemo methodsFor: 'enumerating' stamp: 'jcg 5/9/2001 07:39'!
+!ClBoundedLineDemo methodsFor: 'enumerating' stamp: 'jcg 9/May/2001 07:39:00'!
 constraintPointsDo: aBlock
 
 	aBlock value: p1.
 	aBlock value: p2! !
 
-!ClBoundedLineDemo methodsFor: 'drawing' stamp: 'hlsf 7/30/2024 21:17:29'!
+!ClBoundedLineDemo methodsFor: 'drawing' stamp: 'hlsf 30/Jul/2024 21:17:29'!
 drawForegroundOn: aCanvas
 
 	aCanvas 
@@ -3106,7 +3106,7 @@ drawForegroundOn: aCanvas
 		color: Color white
 ! !
 
-!ClBoundedLineDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 07:37'!
+!ClBoundedLineDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 07:37:00'!
 initialize
 
 	| offset box left right top bottom |
@@ -3132,7 +3132,7 @@ initialize
 	cs addConstraint: (p2 x cnGEQ: left).  cs addConstraint: (p2 x cnLEQ: right).
 	cs addConstraint: (p2 y cnGEQ: top).  cs addConstraint: (p2 y cnLEQ: bottom).! !
 
-!ClBoundedLineDemo methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:37'!
+!ClBoundedLineDemo methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:37:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -3141,13 +3141,13 @@ veryDeepFixupWith: deepCopier
 	p2 := self fixupPoint: p2 with: deepCopier.
 	! !
 
-!ClElasticBoundedLineDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 08:16'!
+!ClElasticBoundedLineDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 08:16:00'!
 initialize
 
 	super initialize.
 	cs addConstraint: (p2 y - p1 y cnEqual: 200.0 strength: ClStrength medium).! !
 
-!ClBoxesDemo methodsFor: 'enumerating' stamp: 'jcg 5/9/2001 07:48'!
+!ClBoxesDemo methodsFor: 'enumerating' stamp: 'jcg 9/May/2001 07:48:00'!
 constraintPointsDo: aBlock
 
 	aBlock value: p1.
@@ -3156,7 +3156,7 @@ constraintPointsDo: aBlock
 	aBlock value: p4.
 	aBlock value: p5! !
 
-!ClBoxesDemo methodsFor: 'drawing' stamp: 'hlsf 7/30/2024 21:16:29'!
+!ClBoxesDemo methodsFor: 'drawing' stamp: 'hlsf 30/Jul/2024 21:16:29'!
 drawForegroundOn: aCanvas
 	| colors index |
 
@@ -3171,12 +3171,12 @@ drawForegroundOn: aCanvas
 			color: col]
 ! !
 
-!ClBoxesDemo methodsFor: 'defaults' stamp: 'jcg 5/9/2001 07:47'!
+!ClBoxesDemo methodsFor: 'defaults' stamp: 'jcg 9/May/2001 07:47:00'!
 initialExtent
 
 	^ 600@300! !
 
-!ClBoxesDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 07:42'!
+!ClBoxesDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 07:42:00'!
 initialize
 
 	super initialize.
@@ -3217,7 +3217,7 @@ initialize
 	cs addConstraint: (p3 x + 44.0 cnLEQ: p4 x).
 	cs addConstraint: (p4 x + 44.0 cnLEQ: p5 x).! !
 
-!ClBoxesDemo methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:38'!
+!ClBoxesDemo methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:38:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -3229,11 +3229,11 @@ veryDeepFixupWith: deepCopier
 	p5 := self fixupPoint: p5 with: deepCopier.
 ! !
 
-!ClCrossedQuadDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 07:59'!
+!ClCrossedQuadDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 07:59:00'!
 addAdditionalConstraints
 	"no additional constraints for this version"! !
 
-!ClCrossedQuadDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 08:10'!
+!ClCrossedQuadDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 08:10:00'!
 initialize
 
 	super initialize.
@@ -3291,7 +3291,7 @@ initialize
 
 	self addAdditionalConstraints.! !
 
-!ClCrossedQuadDemo methodsFor: 'enumerating' stamp: 'jcg 5/9/2001 08:08'!
+!ClCrossedQuadDemo methodsFor: 'enumerating' stamp: 'jcg 9/May/2001 08:08:00'!
 constraintPointsDo: aBlock
 
 	aBlock value: p1.
@@ -3306,7 +3306,7 @@ constraintPointsDo: aBlock
 
 	aBlock value: center! !
 
-!ClCrossedQuadDemo methodsFor: 'drawing' stamp: 'hlsf 7/30/2024 21:14:51'!
+!ClCrossedQuadDemo methodsFor: 'drawing' stamp: 'hlsf 30/Jul/2024 21:14:51'!
 drawForegroundOn: aCanvas
 	| begin end |
 
@@ -3330,7 +3330,7 @@ drawForegroundOn: aCanvas
 	aCanvas line: begin first to: begin third width: 2 color: Color red.
 	aCanvas line: begin second to: begin fourth width: 2 color: Color red.! !
 
-!ClCrossedQuadDemo methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:15'!
+!ClCrossedQuadDemo methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:15:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -3345,13 +3345,13 @@ veryDeepFixupWith: deepCopier
 	m4 := self fixupPoint: m4 with: deepCopier.
 	center := self fixupPoint: center with: deepCopier.! !
 
-!ClLineDemo methodsFor: 'as yet unclassified' stamp: 'jcg 5/8/2001 16:41'!
+!ClLineDemo methodsFor: 'as yet unclassified' stamp: 'jcg 8/May/2001 16:41:00'!
 constraintPointsDo: aBlock
 
 	aBlock value: p1.
 	aBlock value: p2! !
 
-!ClLineDemo methodsFor: 'as yet unclassified' stamp: 'hlsf 7/29/2024 22:35:18'!
+!ClLineDemo methodsFor: 'as yet unclassified' stamp: 'hlsf 29/Jul/2024 22:35:18'!
 drawForegroundOn: aCanvas
 
 	aCanvas 
@@ -3361,7 +3361,7 @@ drawForegroundOn: aCanvas
 		color: Color white
 ! !
 
-!ClLineDemo methodsFor: 'as yet unclassified' stamp: 'jcg 5/8/2001 16:41'!
+!ClLineDemo methodsFor: 'as yet unclassified' stamp: 'jcg 8/May/2001 16:41:00'!
 initialize
 
 	super initialize.
@@ -3372,7 +3372,7 @@ initialize
 	cs addStay: p2 x.
 	cs addStay: p2 y.! !
 
-!ClLineDemo methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:38'!
+!ClLineDemo methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:38:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -3381,14 +3381,14 @@ veryDeepFixupWith: deepCopier
 	p2 := self fixupPoint: p2 with: deepCopier.
 ! !
 
-!ClMidpointDemo methodsFor: 'enumerating' stamp: 'jcg 5/9/2001 08:24'!
+!ClMidpointDemo methodsFor: 'enumerating' stamp: 'jcg 9/May/2001 08:24:00'!
 constraintPointsDo: aBlock
 
 	aBlock value: p1.
 	aBlock value: p2.
 	aBlock value: m1.! !
 
-!ClMidpointDemo methodsFor: 'drawing' stamp: 'hlsf 7/30/2024 19:21:41'!
+!ClMidpointDemo methodsFor: 'drawing' stamp: 'hlsf 30/Jul/2024 19:21:41'!
 drawForegroundOn: aCanvas
 
 	aCanvas 
@@ -3403,7 +3403,7 @@ drawForegroundOn: aCanvas
 		width: 2
 		color: Color red.! !
 
-!ClMidpointDemo methodsFor: 'initialization' stamp: 'hlsf 7/31/2024 18:47:15'!
+!ClMidpointDemo methodsFor: 'initialization' stamp: 'hlsf 31/Jul/2024 18:47:15'!
 initialize
 
 	super initialize.
@@ -3425,7 +3425,7 @@ initialize
 	cs addConstraint: (p1 x + p2 x cnEqual: m1 x * 2.0).
 	cs addConstraint: (p1 y + p2 y cnEqual: m1 y * 2.0).! !
 
-!ClMidpointDemo methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:39'!
+!ClMidpointDemo methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:39:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -3434,11 +3434,11 @@ veryDeepFixupWith: deepCopier
 	p2 := self fixupPoint: p2 with: deepCopier.
 	m1 := self fixupPoint: m1 with: deepCopier.! !
 
-!ClQuadDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 08:26'!
+!ClQuadDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 08:26:00'!
 addAdditionalConstraints
 	"no additional constraints for this version"! !
 
-!ClQuadDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 08:27'!
+!ClQuadDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 08:27:00'!
 initialize
 
 	super initialize.
@@ -3485,7 +3485,7 @@ initialize
 
 	self addAdditionalConstraints.! !
 
-!ClQuadDemo methodsFor: 'enumerating' stamp: 'jcg 5/9/2001 08:29'!
+!ClQuadDemo methodsFor: 'enumerating' stamp: 'jcg 9/May/2001 08:29:00'!
 constraintPointsDo: aBlock
 
 	aBlock value: p1.
@@ -3498,7 +3498,7 @@ constraintPointsDo: aBlock
 	aBlock value: m3.
 	aBlock value: m4! !
 
-!ClQuadDemo methodsFor: 'drawing' stamp: 'hlsf 7/30/2024 19:26:14'!
+!ClQuadDemo methodsFor: 'drawing' stamp: 'hlsf 30/Jul/2024 19:26:14'!
 drawForegroundOn: aCanvas
 	| begin end |
 
@@ -3515,7 +3515,7 @@ drawForegroundOn: aCanvas
 		aCanvas line: b to: e width: 2 color: Color yellow].
 ! !
 
-!ClQuadDemo methodsFor: 'copying' stamp: 'jcg 6/29/2001 13:37'!
+!ClQuadDemo methodsFor: 'copying' stamp: 'jcg 29/Jun/2001 13:37:00'!
 veryDeepFixupWith: deepCopier
 	"If some fields were weakly copied, fix new copy here."
 
@@ -3530,7 +3530,7 @@ veryDeepFixupWith: deepCopier
 	m4 := self fixupPoint: m4 with: deepCopier.
 ! !
 
-!ClBoundedQuadDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 07:41'!
+!ClBoundedQuadDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 07:41:00'!
 addAdditionalConstraints
 
 	| offset box left right top bottom |
@@ -3551,7 +3551,7 @@ addAdditionalConstraints
 	cs addConstraint: (p4 x cnGEQ: left).  cs addConstraint: (p4 x cnLEQ: right).
 	cs addConstraint: (p4 y cnGEQ: top).  cs addConstraint: (p4 y cnLEQ: bottom).! !
 
-!ClElasticQuadDemo methodsFor: 'initialization' stamp: 'jcg 5/9/2001 08:31'!
+!ClElasticQuadDemo methodsFor: 'initialization' stamp: 'jcg 9/May/2001 08:31:00'!
 addAdditionalConstraints
 
 	super addAdditionalConstraints.
@@ -3572,18 +3572,18 @@ addAdditionalConstraints
 	cs addConstraint: (p1 x cnEqual: p3 x strength: ClStrength medium).
 	cs addConstraint: (p3 y - p1 y cnEqual: 200.0 strength: ClStrength medium).! !
 
-!ClCassowaryTests methodsFor: 'initialization' stamp: 'eem 4/2/2012 17:20'!
+!ClCassowaryTests methodsFor: 'initialization' stamp: 'eem 2/Apr/2012 17:20:00'!
 haltFirst: h
 	"haltFirst is a boolean flag ... if it is true, halt before running each test, so that the user can step through the test if desired"
 	
 	haltFirst := h.! !
 
-!ClCassowaryTests methodsFor: 'initialization' stamp: 'eem 4/2/2012 17:20'!
+!ClCassowaryTests methodsFor: 'initialization' stamp: 'eem 2/Apr/2012 17:20:00'!
 initialize
 	super initialize.
 	haltFirst := false.! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:22'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:22:00'!
 testAddDelete1
 
 "
@@ -3617,7 +3617,7 @@ testAddDelete1
 	solver removeConstraint: c10again.
 	self assert: result & (x value clApprox: 100.0)! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:22'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:22:00'!
 testAddDelete2
 
 "
@@ -3651,7 +3651,7 @@ testAddDelete2
 	solver removeConstraint: cxy.
 	self assert: result & (x value clApprox: 100.0) & (y value clApprox: 120.0)! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:23'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:23:00'!
 testAddDelete3
 
 "
@@ -3675,7 +3675,7 @@ testAddDelete3
 	solver removeConstraint: c1.
 	self assert: result & (x value clApprox: 200.0)! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:24'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:24:00'!
 testEdit1
 
 "
@@ -3724,7 +3724,7 @@ testEdit1
 	self assert: result & (x value clApprox: 44.0) & (y value clApprox: 22.0).
 	solver endEdit! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:24'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:24:00'!
 testInconsistent1
 
 "
@@ -3749,7 +3749,7 @@ testInconsistent1
 	solver addConstraint: (x cnEqual: 10.0).
 	self should: [solver addConstraint: (x cnEqual: 5.0)] raise: ClError! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:25'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:25:00'!
 testInconsistent2
 
 "
@@ -3774,7 +3774,7 @@ testInconsistent2
 	solver addConstraint: (x cnGEQ: 10.0).
 	self should: [solver addConstraint: (x cnLEQ: 5.0)] raise: ClError! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:25'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:25:00'!
 testStay1
 
 "
@@ -3797,7 +3797,7 @@ testStay1
 	self assert: (x value clApprox: 20.0).
 	solver removeConstraint: stay! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:26'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:26:00'!
 testTwoSolutions
 
 "
@@ -3831,7 +3831,7 @@ testTwoSolutions
 	self assert: ((x value clApprox: 10.0) & (y value clApprox: 13.0)
 				or: [	(x value clApprox: 7.0) & (y value clApprox: 10.0) ])! !
 
-!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 4/2/2012 17:26'!
+!ClCassowaryTests methodsFor: 'tests' stamp: 'eem 2/Apr/2012 17:26:00'!
 testWeighted1
 
 "
@@ -3857,24 +3857,18 @@ testWeighted1
 	solver removeConstraint: c20.
 	self assert: result & (x value clApprox: 15.0)! !
 
-!Object methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:27'!
+!Object methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:27:00'!
 clApprox: x
 	"Answer true if I am approximately equal to the argument.  The default is just an equality test."
 
 	^ self = x! !
 
-!Object methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:27'!
+!Object methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:27:00'!
 isSymbolicWeight
 
 	^ false! !
 
-!Point methodsFor: '*Cassowary' stamp: 'jcg 5/8/2001 16:54'!
-valuePoint
-	"Answer a Point with the values of my x and y coordinates"
-
-	^ x value @ y value! !
-
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:19'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:19:00'!
 asLinearExpression
 	"Coerce this number to be a ClLinearExpression."
 	| expr |
@@ -3883,7 +3877,7 @@ asLinearExpression
 	expr constant: self asFloat.
 	^ expr! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:19'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:19:00'!
 cnEqual: expr
 	"Answer a linear constraint self=expr with strength=required and weight=1.
 
@@ -3892,7 +3886,7 @@ cnEqual: expr
 
 	^ self cnEqual: expr strength: ClStrength required weight: 1.0! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:20'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:20:00'!
 cnEqual: expr strength: s
 	"Answer a linear constraint self=expr of strength s and weight=1.
 
@@ -3902,7 +3896,7 @@ cnEqual: expr strength: s
 
 	^ self cnEqual: expr strength: s weight: 1.0! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:21'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:21:00'!
 cnEqual: expr strength: s weight: w
 	"Answer a linear constraint self=expr of strength s and weight w.
 
@@ -3919,7 +3913,7 @@ cnEqual: expr strength: s weight: w
 		weight: w.
 	^ cn! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:22'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:22:00'!
 cnGEQ: expr
 	"Answer a linear constraint self>=expr with strength=required and weight=1.
 
@@ -3928,7 +3922,7 @@ cnGEQ: expr
 
 	^ self cnGEQ: expr strength: ClStrength required weight: 1.0! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:23'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:23:00'!
 cnGEQ: expr strength: s
 	"Answer a linear constraint self>=expr of strength s and weight=1.
 
@@ -3938,7 +3932,7 @@ cnGEQ: expr strength: s
 
 	^ self cnGEQ: expr strength: s weight: 1.0! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:24'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:24:00'!
 cnGEQ: expr strength: s weight: w
 	"Answer a linear constraint self>=expr of strength s and weight w.
 
@@ -3955,7 +3949,7 @@ cnGEQ: expr strength: s weight: w
 		weight: w.
 	^ cn! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:24'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:24:00'!
 cnLEQ: expr
 	"Answer a linear constraint self<=expr with strength=required and weight=1.
 
@@ -3964,7 +3958,7 @@ cnLEQ: expr
 
 	^ self cnLEQ: expr strength: ClStrength required weight: 1.0! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:25'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:25:00'!
 cnLEQ: expr strength: s
 	"Answer a linear constraint self<=expr of strength s and weight 1.
 
@@ -3974,7 +3968,7 @@ cnLEQ: expr strength: s
 
 	^ self cnLEQ: expr strength: s weight: 1.0! !
 
-!Number methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:26'!
+!Number methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:26:00'!
 cnLEQ: expr strength: s weight: w
 	"Answer a linear constraint self<=expr of strength s and weight w.
 
@@ -3991,7 +3985,7 @@ cnLEQ: expr strength: s weight: w
 		weight: w.
 	^ cn! !
 
-!Float methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:16'!
+!Float methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:16:00'!
 clApprox: aFloat
 	"Answer true if I am approximately equal to the argument."
 	| epsilon |
@@ -4001,16 +3995,22 @@ clApprox: aFloat
 	aFloat = 0.0 ifTrue: [^ self abs < epsilon].
 	^ (self - aFloat) abs < (self abs * epsilon)! !
 
-!Float methodsFor: '*Cassowary' stamp: 'jcg 5/7/2001 18:17'!
+!Float methodsFor: '*Cassowary' stamp: 'jcg 7/May/2001 18:17:00'!
 clApproxZero
 	"Answer true if I am approximately zero."
 
 	^ self clApprox: 0.0! !
 
-!Float methodsFor: '*Cassowary' stamp: 'AHB 5/23/2001 15:32'!
+!Float methodsFor: '*Cassowary' stamp: 'AHB 23/May/2001 15:32:00'!
 definitelyNegative
 	"return true if I am definitely negative (i.e. smaller than negative epsilon)"
 	^ self < (0.0 - ClSimplexSolver epsilon)! !
+
+!Point methodsFor: '*Cassowary' stamp: 'jcg 8/May/2001 16:54:00'!
+valuePoint
+	"Answer a Point with the values of my x and y coordinates"
+
+	^ x value @ y value! !
 ClSimplexSolver initialize!
 ClStrength initialize!
 ClSymbolicWeight initialize!
