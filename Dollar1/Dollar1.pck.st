@@ -1,6 +1,6 @@
 'From Cuis7.9 [latest update: #8160] on 10 September 2026 at 10:29:43 am'!
 'Description '!
-!provides: 'Dollar1' 1 5!
+!provides: 'Dollar1' '1.5.0'!
 SystemOrganization addCategory: #'Dollar1-Tests'!
 SystemOrganization addCategory: #'Dollar1-Core'!
 

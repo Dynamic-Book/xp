@@ -1,6 +1,6 @@
 'From Cuis7.9 [latest update: #7979] on 7 June 2026 at 7:03:43 pm'!
 'Description '!
-!provides: 'Cassowary' 1 4!
+!provides: 'Cassowary' '1.4.0'!
 SystemOrganization addCategory: #'Cassowary-Kernel'!
 SystemOrganization addCategory: #'Cassowary-Tests'!
 SystemOrganization addCategory: #'Cassowary-Demo'!

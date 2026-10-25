@@ -1,6 +1,6 @@
 'From Cuis7.1 [latest update: #6749] on 9 October 2024 at 5:40:30 pm'!
 'Description Draw with a pen and messages as go: turn: etc.'!
-!provides: 'Pen' 1 7!
+!provides: 'Pen' '1.7.0'!
 SystemOrganization addCategory: #Pen!
 
 
